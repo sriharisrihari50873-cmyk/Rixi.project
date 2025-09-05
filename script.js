@@ -36,9 +36,7 @@ function deleteLast() {
 function calculate() {
   try {
     const result = eval(currentInput);
-    if (result === Infinity || result === -Infinity) {
-      updateDisplay("Error: ÷ by 0");
-    } else if (isNaN(result)) {
+    if (isNaN(result)) {
       updateDisplay("Invalid");
     } else {
       updateDisplay(result);
@@ -52,3 +50,4 @@ function calculate() {
 function updateDisplay(value = currentInput) {
   display.textContent = value;
 }
+
