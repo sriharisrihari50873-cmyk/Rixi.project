@@ -11,11 +11,12 @@ function appendNumber(number) {
 }
 
 function appendOperator(operator) {
-  if (currentInput === "") return;
+  if (currentInput === "" && operator !== "-") return; // only allow "-" at the start
 
   const lastChar = currentInput.slice(-1);
+
   if ("+-*/".includes(lastChar)) {
-    // Replace last operator if operator already present
+    // prevent repeated operators
     currentInput = currentInput.slice(0, -1) + operator;
   } else {
     currentInput += operator;
@@ -37,7 +38,7 @@ function calculate() {
   try {
     const result = eval(currentInput);
     if (isNaN(result)) {
-      updateDisplay("Invalid");
+      updateDisplay("NaN");
     } else {
       updateDisplay(result);
       currentInput = result.toString();
@@ -50,4 +51,3 @@ function calculate() {
 function updateDisplay(value = currentInput) {
   display.textContent = value;
 }
-
